@@ -7,36 +7,52 @@
 
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-secondary rounded h-100 p-4">
-                    <h6 class="mb-4">Ligar atuador</h6>
-                    <form method="post" action="/atuador">
-                        <fieldset class="row mb-3">
-                            <!-- <legend class="col-form-label col-sm-2 pt-0">Radios</legend> -->
-                            <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios"
-                                        id="gridRadios1" value="0" checked>
-                                    <label class="form-check-label" for="gridRadios1">
-                                        Ligar atuador
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios"
-                                        id="gridRadios2" value="1">
-                                    <label class="form-check-label" for="gridRadios2">
-                                        Desligar atuador
-                                    </label>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <button type="submit" class="btn btn-primary">Submeter</button>
-                        
-                    </form>
-                </div>
+          <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+              <h6 class="mb-4">Ligar atuador</h6>
+              <form method="post" action="/atuador">
+                <fieldset class="row mb-3">
+                  <div class="col-sm-10">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="0" checked>
+                      <label class="form-check-label" for="gridRadios1">
+                        Ligar atuador
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="1">
+                      <label class="form-check-label" for="gridRadios2">
+                        Desligar atuador
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Submeter</button>
+              </form>
             </div>
+          </div>
+          <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+              <h6 class="mb-4">Estado do atuador</h6>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for (const data of databaseData) { %>
+                  <tr>
+                    <td><%= data.opcao %></td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+      
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
