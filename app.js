@@ -7,6 +7,7 @@ const collectionName1 = 'LiquidSensor';
 const collectionName2 = 'Pressure';
 const collectionName3 = 'SoilHumidity';
 const collectionName4 = 'GerirAtuador';
+const collectionName5 = 'ReservatoryLevel';
 const uri = 'mongodb+srv://projectGPR:7E0dWIWqULWusikI@cluster0.rzeclhi.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -68,6 +69,21 @@ app.get('/liquidos', async (req, res) => {
     const docs2 = await collection2.find({}).toArray();
     const docs3 = await collection3.find({}).toArray();
     res.render('liquidos', { docs1, docs2, docs3 });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  } finally {
+    await client.close();
+  }
+});
+
+app.get('/reservatorio', async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db(databaseName);
+    const collection1 = database.collection(collectionName5);
+    const docs1 = await collection1.find({}).toArray();
+    res.render('reservatorio', { docs1 });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
