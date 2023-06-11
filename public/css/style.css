@@ -1,9 +1,9 @@
 /********** Template CSS **********/
 :root {
     --primary: #16eb2f;
-    --secondary: #191C24;
+
     --light: #6C7293;
-    --dark: #000000;
+
 }
 
 .back-to-top {
@@ -71,7 +71,7 @@
     width: 250px;
     height: 100vh;
     overflow-y: auto;
-    background: var(--secondary);
+    background: #191C24 ;
     transition: 0.5s;
     z-index: 999;
 }
