@@ -4,7 +4,7 @@
 <body>
 
     <%- include('sidebar.ejs') %>
-
+    <br><br>
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
           <div class="col-sm-12 col-xl-6">
@@ -54,7 +54,118 @@
       </div>
       
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+        <br><br><br>
+        <!-- Recent Sales Start -->
+        <div class="container-fluid pt-4 px-4">
+          <div class="bg-secondary text-center rounded p-4">
+              <div class="d-flex align-items-center justify-content-between mb-4">
+                  <h6 class="mb-0">Registos do Atuador</h6>
+
+              </div>
+              <div class="table-responsive">
+                  <table class="table text-start align-middle table-bordered table-hover mb-0">
+                      <thead>
+                          <tr class="text-white" >
+                              <!-- <th scope="col"><input class="form-check-input" type="checkbox" ></th> -->
+                              <th scope="col" >Data</th>
+                              <th scope="col" >Hora</th>
+                              <th scope="col">Estado do Atuador</th>
+                              <th scope="col">Manual</th>
+                              <th scope="col">Automático</th>
+              
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>01/06/2023</td>
+                              <td>20:00</td>
+                              <td><a >ON</a></td>
+                              <th scope="col">
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <i class="fas fa-check text-success"></i> <!-- Ícone de certo -->
+                                  </label>
+                                </div>
+                              </th>
+                              <th scope="col">
+                                <div class="form-check">
+                                  <label class="form-check-label">
+                                    <i class="fas fa-times text-danger"></i> <!-- Ícone de errado -->
+                                  </label>
+                                </div>
+                              </th>
+                  
+                          </tr>
+                          <tr>
+                            <td>03/06/2023</td>
+                            <td>22:00</td>
+                            <td><a>OFF</a></td>
+                            <th scope="col">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <i class="fas fa-check text-success"></i> <!-- Ícone de certo -->
+                                </label>
+                              </div>
+                            </th>
+                            <th scope="col">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <i class="fas fa-times text-danger"></i> <!-- Ícone de errado -->
+                                </label>
+                              </div>
+                            </th>
+               
+                          </tr>
+                          <tr>
+                            <td>07/06/2023</td>
+                            <td>03:00</td>
+                            <td><a>ON</a></td>
+                            <th scope="col">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <i class="fas fa-times text-danger"></i> <!-- Ícone de errado -->
+
+                                </label>
+                              </div>
+                            </th>
+                            <th scope="col">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <i class="fas fa-check text-success"></i> <!-- Ícone de certo -->
+
+                                </label>
+                              </div>
+                            </th>
+               
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+
+      <br>
+      <!-- Recent Sales End -->
+                  <!-- Footer Start -->
+                  <div class="container-fluid pt-4 px-4">
+                    <div class="bg-secondary rounded-top p-4">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-center text-sm-start">
+                                <img src="images/logo1.png" alt="Logo 2" style="width: 3%;"><a href="#">Horta Auto-Sustentável</a>
+                            </div>
+                            <div class="col-12 col-sm-6 text-center text-sm-end">
+                                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                                Disciplina: <a href="https://htmlcodex.com">Gestão Planeamento de Redes</a>
+                                <br>
+                                <br>Criado por: <a target="_blank">André Silva , Filipe Sousa , Joaquim Ferreira</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
     </div>
+
+    
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
