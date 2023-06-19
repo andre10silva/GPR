@@ -6,8 +6,9 @@ const databaseName = 'GPR';
 const collectionName1 = 'LiquidSensor';
 const collectionName2 = 'Pressure';
 const collectionName3 = 'SoilHumidity';
-const collectionName4 = 'GerirAtuador';
+const AtuadorRega = 'AtuadorRega';
 const collectionName5 = 'ReservatoryLevel';
+
 const uri = 'mongodb+srv://projectGPR:7E0dWIWqULWusikI@cluster0.rzeclhi.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -96,7 +97,7 @@ app.get('/ligarSensor', async function(req, res) {
   try {
     await client.connect();
     const database = client.db(databaseName);
-    const collection4 = database.collection(collectionName4);
+    const collection4 = database.collection(AtuadorRega);
 
     // Retrieve data from the database
     const databaseData = await collection4.find().toArray();
@@ -115,12 +116,25 @@ app.post('/atuador', async function(req, res) {
   try {
     await client.connect();
     const database = client.db(databaseName);
-    const collection4 = database.collection(collectionName4);
+    const collection4 = database.collection(AtuadorRega);
 
     const radio = req.body.gridRadios; // ID do tipo de pergunta selecionado no form
 
+    
+    // radio === '0' ? 'ON' : 'OFF';
+    
+    let ModoAM, ValorAM;
+    if (radio === '0'){
+      ValorAM = 'ON'
+      ModoAM = 'M'
+    }else{
+      ValorAM = 'OFF'
+      ModoAM ='A'
+    }
+
     const atuadores = {
-      opcao: radio === '0' ? 'ON' : 'OFF', // Store "ON" if radio === '0', otherwise store "OFF"
+      Valor: ValorAM,
+      Modo: ModoAM,
     };
 
     // Define the filter to identify the document to be updated
