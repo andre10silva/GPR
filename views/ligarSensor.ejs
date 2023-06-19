@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+
+  <!-- Styles -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"/>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <script>
+      $(document).ready(function() {
+      $('#atas').DataTable( {
+          "searching":    true,
+          "paging":       true,
+          "info":         true,
+          "lengthChange": true,
+          scrollY:        '60vh',
+          scrollCollapse: true,
+          pageLength:     25,
+          language:
+          {
+              url: "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+          },
+      });
+      });
+  </script>
+
+</head>
 <body>
 
     <%- include('sidebar.ejs') %>
     <br><br>
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
-          <div class="col-sm-12 col-xl-6">
+          <div class="col-sm-12 col-xl-8">
             <div class="bg-secondary rounded h-100 p-4">
               <h6 class="mb-4">Ligar atuador</h6>
               <form method="post" action="/atuador">
-                <fieldset class="row mb-3">
+                <fieldset class="row mb-2">
                   <div class="col-sm-10">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="0" checked>
@@ -27,27 +53,17 @@
                     </div>
                   </div>
                 </fieldset>
+                <br>
                 <button type="submit" class="btn btn-primary">Submeter</button>
               </form>
             </div>
           </div>
-          <div class="col-sm-12 col-xl-6">
+          <div class="col-sm-12 col-xl-3">
             <div class="bg-secondary rounded h-100 p-4">
-              <h6 class="mb-4">Estado do atuador</h6>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Estado</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for (const data of databaseData) { %>
-                  <tr>
-                    <td><%= data.Valor %></td>
-                  </tr>
-                  <% } %>
-                </tbody>
-              </table>
+              <br><br>
+                <% for (const data of databaseData) { %>   
+                  <h1 style="text-align: center;color: white;"> <%= data.Valor %></h1>      
+                <% } %>
             </div>
           </div>
         </div>
@@ -55,28 +71,33 @@
       
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-        <br><br><br>
-        <!-- Recent Sales Start -->
-        <div class="container-fluid pt-4 px-4">
-          <div class="bg-secondary text-center rounded p-4">
-              <div class="d-flex align-items-center justify-content-between mb-4">
-                  <h6 class="mb-0">Registos do Atuador</h6>
+      <br><br><br>
 
-              </div>
-              <div class="table-responsive">
-                  <table class="table text-start align-middle table-bordered table-hover mb-0">
+      <br><br><br>
+      <div id="atas_div" class="cards-1 bg-gray">
+          <div class="container">
+              <div class="row">
+                  <div class="text-center">
+                      <h2 class="h2-heading" style="color: black;">Registo do Reservatório</h2>
+                      <br>
+                  </div> <!-- end of col -->
+              </div> <!-- end of row -->
+              <br> 
+              <div class="row">
+                  <div class="col-lg-12">
+  
+                  </div> <!-- end of col -->
+                  <table id="atas" class="display" style="width:50%">
                       <thead>
-                          <tr class="text-white" >
-                              <!-- <th scope="col"><input class="form-check-input" type="checkbox" ></th> -->
-                              <th scope="col" >Data</th>
-                              <th scope="col" >Hora</th>
-                              <th scope="col">Estado do Atuador</th>
-                              <th scope="col">Manual</th>
-                              <th scope="col">Automático</th>
-              
+                          <tr class="text-black" style="color: black ;">
+                            <th scope="col" >Data</th>
+                            <th scope="col" >Hora</th>
+                            <th scope="col">Estado do Atuador</th>
+                            <th scope="col">Manual</th>
+                            <th scope="col">Automático</th>
                           </tr>
                       </thead>
-                      <tbody>
+                        <tbody>
                           <tr>
                               <td>01/06/2023</td>
                               <td>20:00</td>
@@ -95,7 +116,6 @@
                                   </label>
                                 </div>
                               </th>
-                  
                           </tr>
                           <tr>
                             <td>03/06/2023</td>
@@ -114,8 +134,7 @@
                                   <i class="fas fa-times text-danger"></i> <!-- Ícone de errado -->
                                 </label>
                               </div>
-                            </th>
-               
+                            </th>            
                           </tr>
                           <tr>
                             <td>07/06/2023</td>
@@ -125,7 +144,7 @@
                               <div class="form-check">
                                 <label class="form-check-label">
                                   <i class="fas fa-times text-danger"></i> <!-- Ícone de errado -->
-
+  
                                 </label>
                               </div>
                             </th>
@@ -133,42 +152,83 @@
                               <div class="form-check">
                                 <label class="form-check-label">
                                   <i class="fas fa-check text-success"></i> <!-- Ícone de certo -->
-
                                 </label>
                               </div>
-                            </th>
-               
+                            </th>      
                           </tr>
                       </tbody>
                   </table>
-              </div>
+              </div> <!-- end of row -->
           </div>
-      </div>
+      </div> <!-- end of cards-1 -->
 
-      <br>
-      <!-- Recent Sales End -->
-                  <!-- Footer Start -->
-                  <div class="container-fluid pt-4 px-4">
-                    <div class="bg-secondary rounded-top p-4">
-                        <div class="row">
-                            <div class="col-12 col-sm-6 text-center text-sm-start">
-                                <img src="images/logo1.png" alt="Logo 2" style="width: 3%;"><a href="#">Horta Auto-Sustentável</a>
-                            </div>
-                            <div class="col-12 col-sm-6 text-center text-sm-end">
-                                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                                Disciplina: <a href="https://htmlcodex.com">Gestão Planeamento de Redes</a>
-                                <br>
-                                <br>Criado por: <a target="_blank">André Silva , Filipe Sousa , Joaquim Ferreira</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <br><br><br>
+      <!-- Footer Start -->
+      <div class="container-fluid pt-4 px-0">
+          <div class="bg-secondary p-4 mt-4">
+              <br><br>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-6">
+                          <div class="footer-col first">
+                              <h6>Tema</h6>
+                              <p class="p-small">HortaAutoSustentavel</p>
+                          </div> <!-- end of footer-col -->
+                          <div class="footer-col second">
+                              <h6>Cadeira</h6> 
+                              <p> Gestão Planeamento de Redes</p>
+                              <!-- <ul class="list-unstyled li-space-lg p-small"> -->
+                                  <h6>Autores</h6>
+                                  <li>André Silva</li>
+                                  <li>Filipe Sousa</li>
+                                  <li>Joaquim Ferreira</li>
+                              </ul>
+                              
+                          </div> <!-- end of footer-col -->
+                      </div> <!-- end of col -->
+                      <div class="col-lg-6 text-end">
+                          <div class="footer-col third text-end">
+                              <span class="fa-stack">
+                                  <a href="#your-link">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fab fa-facebook-f fa-stack-1x"></i>
+                                  </a>
+                              </span>
+                              <span class="fa-stack">
+                                  <a href="#your-link">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fab fa-twitter fa-stack-1x"></i>
+                                  </a>
+                              </span>
+                              <span class="fa-stack">
+                                  <a href="#your-link">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                                  </a>
+                              </span>
+                              <span class="fa-stack">
+                                  <a href="#your-link">
+                                      <i class="fas fa-circle fa-stack-2x"></i>
+                                      <i class="fab fa-instagram fa-stack-1x"></i>
+                                  </a>
+                              </span>
+                              <p class="p-small"><a href="mailto:contact@site.com"><strong>geral@HortaAutoSustentavel.pt</strong></a></p>
+                          </div> <!-- end of footer-col -->
+                      </div> <!-- end of col -->
+                  </div> <!-- end of row -->
+              </div> <!-- end of container -->
+              <br>
+          </div> <!-- end of footer -->
+      </div> <!-- end of container-fluid -->
+
+
+
     </div>
 
     
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/chart/chart.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -180,7 +240,5 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    
-    </body>
+</body>
 </html>
