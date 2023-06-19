@@ -34,8 +34,9 @@
     <div id="atas_div" class="cards-1 bg-gray">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="h2-heading">Atas</h2>
+                <div class="text-center">
+                    <h2 class="h2-heading" style="color: black;">Registo do Sensor de Humidade</h2>
+                    <br>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <br> 
@@ -45,8 +46,8 @@
                 </div> <!-- end of col -->
                 <table id="atas" class="display" style="width:50%">
                     <thead>
-                        <tr class="text-black">
-                            <th>Data</th>
+                        <tr class="text-black" style="color: black ;">
+                            <th >Data</th>
                             <th>Hora</th>
                             <th>Pressão</th>
                         </tr>
@@ -54,9 +55,9 @@
                     <tbody>
                         <% docs3.forEach(function(documento) { %>
                             <tr>
-                              <td><%= documento.Data %></td>
-                              <td><%= documento.Hora %></td>
-                              <td><%= Number(documento.Valor).toFixed(1) %> %</td>
+                              <td style="background-color: rgb(241, 241, 241); color:black"><%= documento.Data %></td>
+                              <td ><%= documento.Hora %></td>
+                              <td style="background-color: rgb(241, 241, 241); color:black"><%= Number(documento.Valor).toFixed(1) %> %</td>
                             </tr>
                           <% }); %>
                         
@@ -68,24 +69,29 @@
     <!-- end of services -->
     <br><br><br>
     <!-- Footer Start -->
-    <div class="container-fluid pt-4 px-0"> 
-        <div class="bg-secondary p-4">
-            <br><br><br>
+    <div class="container-fluid pt-4 px-0">
+        <div class="bg-secondary p-4 mt-4">
+            <br><br>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="footer-col first">
-                            <h6>Sobre ITChatbot</h6>
-                            <p class="p-small">Somos Uma Empresa Pronta a Trabalhar pra si</p>
+                            <h6>Tema</h6>
+                            <p class="p-small">HortaAutoSustentavel</p>
                         </div> <!-- end of footer-col -->
                         <div class="footer-col second">
-                            <h6>Gestão Planeamento de Redes</h6>
-                            <ul class="list-unstyled li-space-lg p-small">
+                            <h6>Cadeira</h6> 
+                            <p> Gestão Planeamento de Redes</p>
+                            <!-- <ul class="list-unstyled li-space-lg p-small"> -->
+                                <h6>Autores</h6>
                                 <li>André Silva</li>
                                 <li>Filipe Sousa</li>
                                 <li>Joaquim Ferreira</li>
                             </ul>
+                            
                         </div> <!-- end of footer-col -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-6 text-end">
                         <div class="footer-col third text-end">
                             <span class="fa-stack">
                                 <a href="#your-link">
@@ -116,11 +122,12 @@
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
             </div> <!-- end of container -->
+            <br>
         </div> <!-- end of footer -->
     </div> <!-- end of container-fluid -->
     
+    
   
-
     <!-- JavaScript Libraries -->
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
