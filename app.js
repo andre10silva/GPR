@@ -93,6 +93,21 @@ app.get('/reservatorio', async (req, res) => {
   }
 });
 
+app.get('/maquete', async (req, res) => {
+  try {
+    await client.connect();
+    const database = client.db(databaseName);
+    const collection1 = database.collection(collectionName5);
+    const docs1 = await collection1.find({}).toArray();
+    res.render('maquete', { docs1 });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  } finally {
+    await client.close();
+  }
+});
+
 app.get('/ligarSensor', async function(req, res) {
   try {
     await client.connect();
