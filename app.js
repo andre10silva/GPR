@@ -9,6 +9,7 @@ const collectionName3 = 'SoilHumidity';
 const AtuadorRega = 'AtuadorRega';
 const collectionName5 = 'ReservatoryLevel';
 
+
 const uri = 'mongodb+srv://projectGPR:7E0dWIWqULWusikI@cluster0.rzeclhi.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -24,14 +25,7 @@ app.use(express.static('public'));
 app.get('/', async (req, res) => {
   try {
     await client.connect();
-    const database = client.db(databaseName);
-    const collection1 = database.collection(collectionName1);
-    const collection2 = database.collection(collectionName2);
-    const collection3 = database.collection(collectionName3);
-    const docs1 = await collection1.find({}).toArray();
-    const docs2 = await collection2.find({}).toArray();
-    const docs3 = await collection3.find({}).toArray();
-    res.render('index', { docs1, docs2, docs3 });
+    res.render('index', {});
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -44,13 +38,9 @@ app.get('/humidade', async (req, res) => {
   try {
     await client.connect();
     const database = client.db(databaseName);
-    const collection1 = database.collection(collectionName1);
-    const collection2 = database.collection(collectionName2);
     const collection3 = database.collection(collectionName3);
-    const docs1 = await collection1.find({}).toArray();
-    const docs2 = await collection2.find({}).toArray();
     const docs3 = await collection3.find({}).toArray();
-    res.render('humidade', { docs1, docs2, docs3 });
+    res.render('humidade', { docs3 });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -64,12 +54,8 @@ app.get('/liquidos', async (req, res) => {
     await client.connect();
     const database = client.db(databaseName);
     const collection1 = database.collection(collectionName1);
-    const collection2 = database.collection(collectionName2);
-    const collection3 = database.collection(collectionName3);
     const docs1 = await collection1.find({}).toArray();
-    const docs2 = await collection2.find({}).toArray();
-    const docs3 = await collection3.find({}).toArray();
-    res.render('liquidos', { docs1, docs2, docs3 });
+    res.render('liquidos', { docs1 });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -83,8 +69,8 @@ app.get('/reservatorio', async (req, res) => {
     await client.connect();
     const database = client.db(databaseName);
     const collection1 = database.collection(collectionName5);
-    const docs1 = await collection1.find({}).toArray();
-    res.render('reservatorio', { docs1 });
+    const docs2 = await collection1.find({}).toArray();
+    res.render('reservatorio', { docs2 });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -96,10 +82,7 @@ app.get('/reservatorio', async (req, res) => {
 app.get('/maquete', async (req, res) => {
   try {
     await client.connect();
-    const database = client.db(databaseName);
-    const collection1 = database.collection(collectionName5);
-    const docs1 = await collection1.find({}).toArray();
-    res.render('maquete', { docs1 });
+    res.render('maquete');
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -113,11 +96,8 @@ app.get('/ligarSensor', async function(req, res) {
     await client.connect();
     const database = client.db(databaseName);
     const collection4 = database.collection(AtuadorRega);
-
-    // Retrieve data from the database
-    const databaseData = await collection4.find().toArray();
-
-    res.render('ligarSensor', { databaseData });
+    const docs4 = await collection4.find().toArray();
+    res.render('ligarSensor', { docs4 });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -135,9 +115,6 @@ app.post('/atuador', async function(req, res) {
 
     const radio = req.body.gridRadios; // ID do tipo de pergunta selecionado no form
 
-    
-    // radio === '0' ? 'ON' : 'OFF';
-    
     let ModoAM, ValorAM;
     if (radio === '0'){
       ValorAM = 'ON'
@@ -171,7 +148,6 @@ app.post('/atuador', async function(req, res) {
     await client.close();
   }
 });
-
 
 
 const port = process.env.PORT || 3000;
