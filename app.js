@@ -21,7 +21,6 @@ app.set('view engine', 'ejs');
 //Adicione a seguinte linha
 app.use(express.static('public'));
 
-
 app.get('/', async (req, res) => {
   try {
     await client.connect();
@@ -91,13 +90,13 @@ app.get('/maquete', async (req, res) => {
   }
 });
 
-app.get('/ligarSensor', async function(req, res) {
+app.get('/atuador', async function(req, res) {
   try {
     await client.connect();
     const database = client.db(databaseName);
     const collection4 = database.collection(AtuadorRega);
     const docs4 = await collection4.find().toArray();
-    res.render('ligarSensor', { docs4 });
+    res.render('atuador', { docs4 });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
@@ -140,7 +139,7 @@ app.post('/atuador', async function(req, res) {
     // Perform the update operation
     await collection4.updateOne(filter, update);
 
-    res.redirect('/ligarSensor');
+    res.redirect('/atuador');
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');

@@ -30,46 +30,47 @@
 <body>
 
     <%- include('sidebar.ejs') %>
-    <br><br>
-    <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-          <div class="col-sm-12 col-xl-8">
-            <div class="bg-secondary rounded h-100 p-4">
-              <h6 class="mb-4">Ligar atuador</h6>
-              <form method="post" action="/atuador">
-                <fieldset class="row mb-2">
-                  <div class="col-sm-10">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="0" checked>
-                      <label class="form-check-label" for="gridRadios1">
-                        Ligar atuador
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="1">
-                      <label class="form-check-label" for="gridRadios2">
-                        Desligar atuador
-                      </label>
-                    </div>
+    <br><br><br><br><br>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="">
+          <div class=" text-center">
+            <br>
+            <form method="post" action="/atuador">
+              <fieldset class="row mb-2 justify-content-center">
+                <div class="col-sm-10">
+                  <div class="btn-group">
+                    <label class="btn btn-success mr-2 " onclick="submitForm(0)" style="margin: 1em; padding: 1.5em;">
+                      <input type="radio" name="gridRadios" value="0" autocomplete="off" hidden> Ligar Atuador
+                    </label>
+                    <label class="btn btn-danger mr-2" onclick="submitForm(1)" style="margin: 1em; padding: 1.5em;">
+                      <input type="radio" name="gridRadios" value="1" autocomplete="off" hidden> Desligar Atuador
+                    </label>
                   </div>
-                </fieldset>
-                <br>
-                <button type="submit" class="btn btn-primary">Submeter</button>
-              </form>
-            </div>
-          </div>
-          <div class="col-sm-12 col-xl-3">
-            <div class="bg-secondary rounded h-100 p-4">
-              <br><br>
-                <% for (const data of docs4) { %>   
-                  <h1 style="text-align: center;color: white;"> <%= data.Valor %></h1>      
-                <% } %>
-            </div>
+                  <script>
+                    function submitForm(value) {
+                      document.querySelector('input[name="gridRadios"]').value = value;
+                      document.querySelector('form').submit();
+                    }
+                  </script>
+                </div>
+              </fieldset>
+            </form>
           </div>
         </div>
+        <!-- <div class="col-sm-12 col-xl-3">
+          <div class="bg-secondary rounded h-100 p-4">
+            <br><br>
+            <% for (const data of docs4) { %>   
+              <h1 style="text-align: center; color: white;"> <%= data.Valor %></h1>      
+            <% } %>
+          </div>
+        </div> -->
       </div>
+    </div>
     
-      <br>
+    
+      <br><br><br><br><br>
       <div id="atas_div" class="cards-1 bg-gray text-center">
           <div class="container">
               <div class="row">
@@ -94,62 +95,52 @@
                       </thead>
                         <tbody>
 
-                          <% docs4.forEach(function(documento) { %>
-                            <tr>
-                              <td style="background-color: rgb(241, 241, 241); color:black"><%= documento.Data %></td>
-                              <td ><%= documento.Hora %></td>
-                              <td ><%= documento.Valor %></td>
-                              <td ><%= documento.Modo %></td>
-                             
-                            </tr>
-                          <% }); %>
+                            <% docs4.forEach(function(documento) { %>
+                              <tr>
+                                <td style="background-color: rgb(241, 241, 241); color:black" id="data<%= documento.id %>"></td>
+                                <td id="hora<%= documento.id %>"></td>
+                                <td><%= documento.Valor %></td>
+                                <td><%= documento.Modo %></td>
+                              </tr>
+                            <% }); %>
+             
                           
-                          <!-- <tr>
-                              <td>01/06/2023</td>
-                              <td>20:00</td>
-                              <td><a >ON</a></td>
-                              <th scope="col">
-                                <div class="form-check">
-                                  <label class="form-check-label">
-                                    <a>Manual</a>
-                                  </label>
-                                </div>
-                              </th>
-                              
-                          </tr>
-                          <tr>
-                            <td>03/06/2023</td>
-                            <td>22:00</td>
-                            <td><a>OFF</a></td>
-                           
-                            <th scope="col">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <a>Automatico</a>
-                                </label>
-                              </div>
-                            </th>            
-                          </tr>
-                          <tr>
-                            <td>07/06/2023</td>
-                            <td>03:00</td>
-                            <td><a>ON</a></td>
-                           
-                            <th scope="col">
-                              <div class="form-check">
-                                <label class="form-check-label">
-                                  <a>Manual</a>
-                                </label>
-                              </div>
-                            </th>      
-                          </tr> -->
+                          <script>
+                            // Função para atualizar a data e a hora atual em cada linha da tabela
+                            function updateDateTime() {
+                              var currentDate = new Date();
+                              var day = String(currentDate.getDate()).padStart(2, '0');
+                              var month = String(currentDate.getMonth() + 1).padStart(2, '0');
+                              var year = String(currentDate.getFullYear()).slice(-2);
+                              var hours = String(currentDate.getHours()).padStart(2, '0');
+                              var minutes = String(currentDate.getMinutes()).padStart(2, '0');
+                          
+                              var dateTimeString = month + '/' + day + '/' + year;
+                              var timeString = hours + ':' + minutes ;
+                          
+                              // Atualiza a data e a hora em cada linha da tabela
+                              <% docs4.forEach(function(documento) { %>
+                                document.getElementById('data<%= documento.id %>').textContent = dateTimeString;
+                                document.getElementById('hora<%= documento.id %>').textContent = timeString;
+                              <% }); %>
+                          
+                              // Atualiza a data e a hora a cada segundo
+                              setTimeout(updateDateTime, 1000);
+                            }
+                          
+                            // Chama a função inicialmente para exibir a data e a hora atual
+                            updateDateTime();
+                          </script>
+                          
+                          
+                          
                       </tbody>
                   </table>
               </div> <!-- end of row -->
           </div>
       </div> <!-- end of cards-1 -->
 
-      <br><br><br>
+      <br><br><br><br>
       <!-- Footer Start -->
       <div class="container-fluid pt-4 px-0">
         <div class="bg-secondary p-4 mt-4">
