@@ -66,26 +66,42 @@
 
     // Worldwide Sales Chart
     var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
-    var myChart1 = new Chart(ctx1, {
-        type: "bar",
-        data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
-            datasets: [{
-                    label: "Sensor de Humidade",
-                    data: [15, 30, 55, 65, 60, 80, 70, 30, 55, 65, 60, 80, 95, 30, 55, 65, 60, 80, 50, 30, 55, 65, 60, 80, 45, 30, 35, 45, 20, 10, 5],
-                    backgroundColor: "#00FFFF"
-                },
-                {
-                    label: "Sensor de Liquido",
-                    data: [12, 25, 45, 55, 65, 70, 60, 25, 45, 55, 65, 70, 60, 25, 45, 55, 65, 70, 60, 25, 45, 55, 65, 70, 60, 45, 35, 15, 25, 20, 10],
-                    backgroundColor: "blue"
-                }
-            ]
+var myChart1 = new Chart(ctx1, {
+    type: "bar",
+    data: {
+        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"],
+        datasets: [{
+                label: "Sensor de Humidade",
+                data: [15, 30, 55, 65, 60, 80, 70, 30, 55, 65, 60, 80, 95, 30, 55, 65, 60, 80, 50, 60, 55, 50, 45, 40, 45, 30, 35, 25, 20, 10, 5],
+                backgroundColor: "#00FFFF"
             },
-        options: {
-            responsive: true
+            {
+                label: "Sensor de Liquido",
+                data: [12, 25, 45, 55, 65, 70, 60, 25, 45, 55, 65, 70, 60, 25, 45, 55, 65, 70, 60, 50, 45, 45, 50, 40, 35, 30, 25, 15, 20, 15, 10],
+                backgroundColor: "blue"
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: "PERCENTAGEM (%)"
+                }
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: "HORAS"
+                }
+            }
         }
-    });
+    }
+});
+
 
 
     // Single Bar Chart
@@ -106,7 +122,22 @@
             }]
         },
         options: {
-            responsive: true
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: "PERCENTAGEM (%)"
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: "SEMANAS"
+                    }
+                }
+            }
         }
     });
 
