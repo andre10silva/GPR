@@ -20,7 +20,7 @@
           pageLength:     10,
           language:
           {
-              url: "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+              url: "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
           },
       });
       });
@@ -32,50 +32,12 @@
     <%- include('sidebar.ejs') %>
 
     <div class="container-fluid">
-      <div class="row">
-        <div class="">
-          <div class=" text-center">
-            <br><br><br><br><br><br>
-            <form method="post" action="/atuador">
-              <fieldset class="row mb-2 justify-content-center">
-                <div class="col-sm-10">
-                  <div class="btn-group">
-                    <label class="btn btn-success mr-2 " onclick="submitForm(0)" style="margin: 1em; padding: 1.5em;">
-                      <input type="radio" name="gridRadios" value="0" autocomplete="off" hidden> Ligar Atuador
-                    </label>
-                    <label class="btn btn-danger mr-2" onclick="submitForm(1)" style="margin: 1em; padding: 1.5em;">
-                      <input type="radio" name="gridRadios" value="1" autocomplete="off" hidden> Desligar Atuador
-                    </label>
-                  </div>
-                  <script>
-                    function submitForm(value) {
-                      document.querySelector('input[name="gridRadios"]').value = value;
-                      document.querySelector('form').submit();
-                    }
-                  </script>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-        <!-- <div class="col-sm-12 col-xl-3">
-          <div class="bg-secondary rounded h-100 p-4">
-            <br><br>
-            <% for (const data of docs4) { %>   
-              <h1 style="text-align: center; color: white;"> <%= data.Valor %></h1>      
-            <% } %>
-          </div>
-        </div> -->
-      </div>
-    </div>
-    
-    
-      <br><br><br><br><br><br>
+      <br><br>
       <div id="atas_div" class="cards-1 bg-gray text-center">
           <div class="container">
               <div class="row">
                   <div class="text-center">
-                      <h2 class="h2-heading" style="color: black;">Registo dos Atuadores</h2>
+                      <h2 class="h2-heading" style="color: black;">Registo de Atuador</h2>
                       <br>
                   </div> <!-- end of col -->
               </div> <!-- end of row -->
@@ -84,7 +46,7 @@
                   <div class="col-lg-12">
   
                   </div> <!-- end of col -->
-                  <table id="atas" class="display" style="width:50%">
+                  <table id="atas" class="display">
                       <thead>
                           <tr class="text-black" style="color: black ;">
                             <th scope="col">Data</th>
@@ -94,7 +56,6 @@
                           </tr>
                       </thead>
                         <tbody>
-
                             <% docs4.forEach(function(documento) { %>
                               <tr>
                                 <td style="background-color: rgb(241, 241, 241); color:black" id="data<%= documento.id %>"></td>
@@ -104,7 +65,6 @@
                               </tr>
                             <% }); %>
              
-                          
                           <script>
                             // Função para atualizar a data e a hora atual em cada linha da tabela
                             function updateDateTime() {
@@ -131,16 +91,38 @@
                             // Chama a função inicialmente para exibir a data e a hora atual
                             updateDateTime();
                           </script>
-                          
-                          
-                          
                       </tbody>
                   </table>
               </div> <!-- end of row -->
           </div>
+      </div>
       </div> <!-- end of cards-1 -->
-
-      <br><br><br><br><br><br>
+      <div class="">
+        <div class=" text-center">
+          <br><br><br>
+          <form method="post" action="/atuador">
+            <fieldset class="row mb-2 justify-content-center">
+              <div class="col-sm-10">
+                <div class="btn-group">
+                  <label class="btn btn-success mr-2 " onclick="submitForm(0)" style="margin: 1em; padding: 1.5em;">
+                    <input type="radio" name="gridRadios" value="0" autocomplete="off" hidden> Ligar Atuador
+                  </label>
+                  <label class="btn btn-danger mr-2" onclick="submitForm(1)" style="margin: 1em; padding: 1.5em;">
+                    <input type="radio" name="gridRadios" value="1" autocomplete="off" hidden> Desligar Atuador
+                  </label>
+                </div>
+                <script>
+                  function submitForm(value) {
+                    document.querySelector('input[name="gridRadios"]').value = value;
+                    document.querySelector('form').submit();
+                  }
+                </script>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      <br><br><br>
       <!-- Footer Start -->
       <div class="container-fluid pt-4 px-0">
         <div class="bg-secondary p-4 mt-4">
@@ -203,7 +185,8 @@
             </div> <!-- end of row -->
           </div> <!-- end of container -->
           <br>
-        </div> <!-- end of footer -->
+        </div>
+      </div> <!-- end of footer -->
       </div>
     </div>
 

@@ -20,7 +20,7 @@
             pageLength:     10,
             language:
             {
-                url: "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+                url: "https://cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese.json"
             },
         });
         });
@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="text-center">
-                  <br><br><br>    <br><br><br>
+                  <br><br>
                     <h2 class="h2-heading" style="color: black;">Registo do Reservatório</h2>
                     <br>
                 </div> <!-- end of col -->
@@ -79,7 +79,15 @@
                           <tr>
                               <td style="background-color: rgb(241, 241, 241); color:black"><%= formatoData %></td>
                               <td><%= documento.Hora %></td>
-                              <td style="background-color: rgb(241, 241, 241); color:black"><%= Number(documento.Valor).toFixed(0) %></td>
+                              <!-- <td style="background-color: rgb(241, 241, 241); color:black"><%= Number(documento.Valor) %></td> -->
+                              <td style="background-color: rgb(241, 241, 241); color:black">
+                                <% if (documento.Valor === 0) { %>
+                                  Normal
+                                <% } else { %>
+                                  Vazio
+                                <% } %>
+                              </td>
+                              
                           </tr>
                       <% }); %>
                   </tbody>
