@@ -54,15 +54,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% docs2.forEach(function(documento) { %>
-                            <tr>
-                              <td style="background-color: rgb(241, 241, 241); color:black"><%= documento.Data %></td>
-                              <td ><%= documento.Hora %></td>
-                              <td style="background-color: rgb(241, 241, 241); color:black"><%= Number(documento.Valor).toFixed(1) %> %</td>
-                            </tr>
-                          <% }); %>
-                        
-                    </tbody>
+                      <% 
+                      // Ordenar documentos pela data e hora mais recente
+                      docs2.sort(function(a, b) {
+                          // Converter as datas e horas para o formato adequado
+                          var dataA = new Date(a.Data + ' ' + a.Hora);
+                          var dataB = new Date(b.Data + ' ' + b.Hora);
+                          
+                          // Comparar as datas e horas
+                          return dataB - dataA;
+                      });
+                      
+                      // Iterar pelos documentos ordenados
+                      docs2.forEach(function(documento) {
+                          // Obter os componentes da data
+                          var dataObj = new Date(documento.Data + ' ' + documento.Hora);
+                          var dia = String(dataObj.getDate()).padStart(2, '0');
+                          var mes = String(dataObj.getMonth() + 1).padStart(2, '0');
+                          var ano = new Date(documento.Data).getFullYear().toString().slice(-2);
+                  
+                          // Formatar a data e hora no formato desejado
+                          var formatoData = dia + '/' + mes + '/20' + ano;
+                      %>
+                          <tr>
+                              <td style="background-color: rgb(241, 241, 241); color:black"><%= formatoData %></td>
+                              <td><%= documento.Hora %></td>
+                              <td style="background-color: rgb(241, 241, 241); color:black"><%= Number(documento.Valor).toFixed(0) %></td>
+                          </tr>
+                      <% }); %>
+                  </tbody>
                 </table>
             </div> <!-- end of row -->
         </div>

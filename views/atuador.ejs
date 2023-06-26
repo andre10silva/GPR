@@ -11,10 +11,10 @@
   <script>
       $(document).ready(function() {
       $('#atas').DataTable( {
-          "searching":    true,
-          "paging":       true,
-          "info":         true,
-          "lengthChange": true,
+          "searching":    false,
+          "paging":       false,
+          "info":         false,
+          "lengthChange": false,
           scrollY:        '60vh',
           scrollCollapse: true,
           pageLength:     10,
@@ -87,8 +87,8 @@
                   <table id="atas" class="display" style="width:50%">
                       <thead>
                           <tr class="text-black" style="color: black ;">
-                            <th scope="col" >Data</th>
-                            <th scope="col" >Hora</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Hora</th>
                             <th scope="col">Estado do Atuador</th>
                             <th scope="col">Modo do Actuador</th>
                           </tr>
@@ -115,7 +115,7 @@
                               var hours = String(currentDate.getHours()).padStart(2, '0');
                               var minutes = String(currentDate.getMinutes()).padStart(2, '0');
                           
-                              var dateTimeString = month + '/' + day + '/' + year;
+                              var dateTimeString = day + '/' + month + '/20' + year;
                               var timeString = hours + ':' + minutes ;
                           
                               // Atualiza a data e a hora em cada linha da tabela
